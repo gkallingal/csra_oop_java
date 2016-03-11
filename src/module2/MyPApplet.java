@@ -17,6 +17,7 @@ public class MyPApplet extends PApplet {
 	public void draw(){
 		backgroundImg.resize(width, height);
 		image(backgroundImg, 0, 0);
+		fill(255, 200, 0);
 		ellipse(width/4, height/5, width/4, height/4);
 		
 	}
