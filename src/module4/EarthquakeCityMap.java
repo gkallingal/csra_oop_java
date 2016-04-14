@@ -164,6 +164,11 @@ public class EarthquakeCityMap extends PApplet {
 		
 		// IMPLEMENT THIS: loop over all countries to check if location is in any of them
 		
+		for (Marker country: countryMarkers){
+			if (isInCountry(earthquake, country))
+			return true;
+		}
+		
 		// TODO: Implement this method using the helper method isInCountry
 		
 		// not inside any country
@@ -179,8 +184,21 @@ public class EarthquakeCityMap extends PApplet {
 	private void printQuakes() 
 	{
 		// TODO: Implement this method
-	}
-	
+		
+		for (Marker country : countryMarkers ) {
+			for (Marker quake : quakeMarkers ) {
+				if (country.getProperty("name") == quake.getProperty("country")) {
+					
+					System.out.println ("Country: " + country.getProperty("name"));
+					System.out.println("Quakes detected in " + country.getProperty("name") + ":" + i );	
+				}
+				
+				
+			}
+				
+			}
+		}
+		
 	
 	
 	// helper method to test whether a given earthquake is in a given country
