@@ -1,6 +1,7 @@
 package module4;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
@@ -184,21 +185,34 @@ public class EarthquakeCityMap extends PApplet {
 	private void printQuakes() 
 	{
 		// TODO: Implement this method
+		int count = 0;
+		int ocean_count = 0;
+		int waterQuakes = quakeMarkers.size();
+		System.out.println(waterQuakes);
 		
-		for (Marker country : countryMarkers ) {
-			for (Marker quake : quakeMarkers ) {
-				if (country.getProperty("name") == quake.getProperty("country")) {
-					
-					System.out.println ("Country: " + country.getProperty("name"));
-					System.out.println("Quakes detected in " + country.getProperty("name") + ":" + i );	
+		for (Marker country : countryMarkers) {
+			String countryName = country.getStringProperty("name");
+			 for (Marker quake : quakeMarkers ) {
+				 EarthquakeMarker eqmarker = (EarthquakeMarker) quake;
+				 if (eqmarker.isOnLand) {
+					 if (country.getProperty("name").equals(quake.getProperty("country"))){
+						 count++;
+					 }
 				}
 				
-				
-			}
-				
+			 }
+			// increment ocean counter
+			if (count > 0) {	
+			    waterQuakes -= count;
+				System.out.println(countryName + " : " + count);
+				count = 0;
 			}
 		}
+		System.out.println("OCEAN QUAKES: " + waterQuakes);
+	}
+	
 		
+
 	
 	
 	// helper method to test whether a given earthquake is in a given country
